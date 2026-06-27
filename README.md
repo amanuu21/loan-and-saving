@@ -1,240 +1,75 @@
-# loan-and-saving
+# React + TypeScript + Vite
 
-# API Contract
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Authentication
+Currently, two official plugins are available:
 
-### Register User
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-POST /api/auth/register
+## React Compiler
 
-Request
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-```json
-{
-  "name": "string",
-  "email": "string",
-  "password": "string"
-}
-```
+## Expanding the ESLint configuration
 
-Response
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```json
-{
-  "message": "User registered successfully"
-}
-```
-
----
-
-### Login User
-
-POST /api/auth/login
-
-Request
-
-```json
-{
-  "email": "string",
-  "password": "string"
-}
-```
-
-Response
-
-```json
-{
-  "token": "jwt_token",
-  "user": {
-    "id": 1,
-    "name": "string",
-    "email": "string"
-  }
-}
-```
-
----
-
-## User Profile
-
-### Get Profile
-
-GET /api/users/profile
-
-Response
-
-```json
-{
-  "id": 1,
-  "name": "string",
-  "email": "string"
-}
-```
-
----
-
-## Savings
-
-### Get Savings Information
-
-GET /api/savings
-
-Response
-
-```json
-{
-  "balance": 5000,
-  "totalDeposits": 7000,
-  "totalWithdrawals": 2000
-}
-```
-
----
-
-### Deposit Savings
-
-POST /api/savings/deposit
-
-Request
-
-```json
-{
-  "amount": 1000
-}
-```
-
-Response
-
-```json
-{
-  "message": "Deposit successful"
-}
-```
-
----
-
-### Withdraw Savings
-
-POST /api/savings/withdraw
-
-Request
-
-```json
-{
-  "amount": 500
-}
-```
-
-Response
-
-```json
-{
-  "message": "Withdrawal successful"
-}
-```
-
----
-
-## Loans
-
-### Apply For Loan
-
-POST /api/loans
-
-Request
-
-```json
-{
-  "amount": 10000,
-  "durationMonths": 12,
-  "purpose": "Business"
-}
-```
-
-Response
-
-```json
-{
-  "loanId": 1,
-  "status": "Pending"
-}
-```
-
----
-
-### Get User Loans
-
-GET /api/loans
-
-Response
-
-```json
-[
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
   {
-    "loanId": 1,
-    "amount": 10000,
-    "remainingBalance": 7000,
-    "status": "Active"
-  }
-]
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+
 ```
 
----
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-### Repay Loan
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-POST /api/loans/{loanId}/repay
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 
-Request
-
-```json
-{
-  "amount": 1000
-}
 ```
-
-Response
-
-```json
-{
-  "message": "Repayment successful"
-}
-```
-
----
-
-## Dashboard
-
-### Get Dashboard Data
-
-GET /api/dashboard
-
-Response
-
-```json
-{
-  "savingsBalance": 5000,
-  "activeLoans": 1,
-  "remainingLoanBalance": 7000,
-  "recentTransactions": []
-}
-```
-
----
-
-# Frontend Pages
-
-1. Landing Page
-2. Login Page
-3. Registration Page
-4. User Dashboard
-5. Savings Page
-6. Loan Application Page
-7. Loan History Page
-8. User Profile Page
-
----
-
-
-
