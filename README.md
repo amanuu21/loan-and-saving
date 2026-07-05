@@ -73,3 +73,6 @@ export default defineConfig([
 ])
 
 ```
+
+# Progress update on 2026-07-05 - docs: document database entity relationship diagram in README
+# Revision: 7
