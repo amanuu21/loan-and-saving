@@ -79,3 +79,6 @@ export default defineConfig([
 
 # Progress update on 2026-07-18 - docs: document database entity relationship diagram in README (iter 2)
 # Revision: 17
+
+# Progress update on 2026-08-06 - docs: document database entity relationship diagram in README (iter 3)
+# Revision: 27
