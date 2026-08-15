@@ -10,3 +10,6 @@
 
 # Progress update on 2026-08-12 - feat(amortization): implement compound interest amortization schedule (iter 4)
 # Revision: 31
+
+# Progress update on 2026-08-15 - feat(amortization): implement compound interest amortization schedule (iter 5)
+# Revision: 41
