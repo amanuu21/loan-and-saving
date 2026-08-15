@@ -7,3 +7,6 @@
 
 # Progress update on 2026-08-12 - chore: add database migration for transaction reference IDs (iter 3)
 # Revision: 30
+
+# Progress update on 2026-08-15 - chore: add database migration for transaction reference IDs (iter 4)
+# Revision: 40
