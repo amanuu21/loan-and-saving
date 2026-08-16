@@ -10,3 +10,6 @@
 
 # Progress update on 2026-08-12 - perf(export): stream monthly transaction statement generation to CSV (iter 4)
 # Revision: 34
+
+# Progress update on 2026-08-16 - perf(export): stream monthly transaction statement generation to CSV (iter 5)
+# Revision: 44
